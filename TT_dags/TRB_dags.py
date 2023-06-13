@@ -29,8 +29,12 @@ def gen_bash(task_id, bash_command, trigger_rule='all_success'):
     )
 
 
-naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py')
+# naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py {{execution_date}}')
+naver_temp = gen_bash(task_id='naver_temp', bash_command='python /home/jhy/airflow-local/tmp.py {{execution_date.strftime("%Y-%m-%d")}}')
 
 
 
 naver_temp 
+
+
+
