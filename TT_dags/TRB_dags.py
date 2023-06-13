@@ -8,7 +8,7 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
-    'start_date': datetime(year=2023, month=6, day=1, hour=0, minute=0, tzinfo=local_tz),
+    'start_date': datetime(year=2020, month=1, day=1, hour=0, minute=0, tzinfo=local_tz),
     'retries': 0,
 }
 test_dag = DAG(
@@ -29,8 +29,8 @@ def gen_bash(task_id, bash_command, trigger_rule='all_success'):
     )
 
 
-# naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py {{execution_date}}')
-naver_temp = gen_bash(task_id='naver_temp', bash_command='python /home/jhy/airflow-local/tmp.py {{execution_date.strftime("%Y-%m-%d")}}')
+naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py {{execution_date.strftime("%Y-%m-%d")}}')
+
 
 
 
