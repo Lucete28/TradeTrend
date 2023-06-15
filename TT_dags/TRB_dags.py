@@ -8,7 +8,7 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
-    'start_date': datetime(year=2020, month=1, day=1, hour=0, minute=0, tzinfo=local_tz),
+    'start_date': datetime(year=2023, month=6, day=10, hour=0, minute=0, tzinfo=local_tz),
     'retries': 10,
     'retry_delay': timedelta(seconds=5)
 }
