@@ -29,6 +29,7 @@ df2 = fdr.DataReader('ks11', '2020')
 
 news_df = pd.read_csv('/home/jhy/code/TradeTrend/data/news_raw.csv', index_col=0)  # 첫 번째 열을 인덱스로 설정
 common_df = merge_and_clean(df1,'_USD/KRW',df2,'_ks11')
+news_df.index = pd.to_datetime(news_df.index)
 
 for target in target_list:
     df = fdr.DataReader(target, '2020')
