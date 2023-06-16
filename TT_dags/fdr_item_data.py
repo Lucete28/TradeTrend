@@ -9,7 +9,7 @@ import FinanceDataReader as fdr
 import pandas as pd 
 from airflow.models.variable import Variable
 
-target_list  =  Variable.get("Target_list")
+target_list  =  Variable.get("Target_list").split(",")
 
 def merge_and_clean(df1,df1_name,df2,df2_name):
     merged_df = df1.join(df2, how='outer', lsuffix=df1_name, rsuffix=df2_name)
@@ -27,7 +27,7 @@ def min_max_scaling(df):
 df1 = fdr.DataReader('USD/KRW', '2020')
 df2 = fdr.DataReader('ks11', '2020')
 
-news_df = pd.read_csv('/home/jhy/code/TradeTrend/data/news_raw.csv', index_col=0)  # 첫 번째 열을 인덱스로 설정
+news_df = pd.read_csv('/home/jhy/code/TradeTrend/data/news_raw2.csv', index_col=0)  # 첫 번째 열을 인덱스로 설정
 common_df = merge_and_clean(df1,'_USD/KRW',df2,'_ks11')
 news_df.index = pd.to_datetime(news_df.index)
 
@@ -39,7 +39,8 @@ for target in target_list:
     final_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_temp.csv')
     sc_df = min_max_scaling(final_df)
     sc_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_raw.csv')
-    
+    print(sc_df.shape)
+    print('#####################################################################')
 
 
 

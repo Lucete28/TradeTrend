@@ -32,10 +32,11 @@ def gen_bash(task_id, bash_command, trigger_rule='all_success'):
 
 naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py {{execution_date.strftime("%Y-%m-%d")}}')
 update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/code/TradeTrend/TT_dags/update_naver_raw.py')
+fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/code/TradeTrend/TT_dags/fdr_item_data.py')
 
 
 
-naver_temp >> update_raw
+naver_temp >> update_raw >> fdr_data
 
 
 
