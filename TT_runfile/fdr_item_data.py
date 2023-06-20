@@ -36,11 +36,10 @@ for target in target_list:
     target_df = merge_and_clean(df,target,news_df,'news')
     
     final_df = merge_and_clean(target_df,target,common_df,'_common')
-    final_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_temp.csv')
+    final_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_temp.csv',index = False)
     sc_df = min_max_scaling(final_df)
-    sc_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_raw.csv')
-    print(sc_df.shape)
-    print('#####################################################################')
+    sc_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{target}_raw.csv',index = False)
+
 
 
 
