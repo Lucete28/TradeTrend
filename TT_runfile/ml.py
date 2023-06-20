@@ -63,7 +63,9 @@ for model in models:
     rise_pred_count = 0
     fall_real_count = 0
     fall_pred_count = 0
-
+    real_rise_count = 0
+    real_fall_count = 0    
+    
     for i in check:
         if i[0] == 1:
             rise_pred_count += 1
@@ -73,11 +75,21 @@ for model in models:
             fall_pred_count += 1
             if i[1] == -1:
                 fall_real_count += 1
+        if i[1] == 1:
+            real_rise_count+=1
+        elif i[1] == -1:
+            real_fall_count+=1
+
+
 
     result_dict = {
         'Model Name': type(model.estimator).__name__,
-        'Rise Accuracy': (rise_real_count / rise_pred_count) * 100 if rise_pred_count != 0 else 'N/A (pred_count가 0입니다)',
-        'Fall Accuracy': (fall_real_count / fall_pred_count) * 100 if fall_pred_count != 0 else 'N/A (pred_count가 0입니다)',
+        'real_rise' : real_rise_count,
+        'rise_pred_count' : rise_pred_count,
+        'real_fall' : real_fall_count,
+        'fall_pred_count' : fall_pred_count,
+        'Rise_pred Accuracy': (rise_real_count / rise_pred_count) * 100 if rise_pred_count != 0 else 'N/A (pred_count가 0입니다)',
+        'Fall_pred Accuracy': (fall_real_count / fall_pred_count) * 100 if fall_pred_count != 0 else 'N/A (pred_count가 0입니다)',
     }
     model_names.append(type(model.estimator).__name__)
     Accuracy_list.append(result_dict)
