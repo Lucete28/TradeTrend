@@ -34,9 +34,9 @@ naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData
 update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/update_naver_raw.py')
 fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/fdr_item_data.py')
 ml = gen_bash(task_id='ml', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/ml.py')
+trading = gen_bash(task_id='trading', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/trading.py')
 
-
-naver_temp >> update_raw >> fdr_data >> ml
+naver_temp >> update_raw >> fdr_data >> ml >> trading
 
 
 
