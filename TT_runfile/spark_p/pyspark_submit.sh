@@ -7,7 +7,6 @@ EXEC_DT=$3
 
 python $PYSPARK_CODE
 
-# SPARK_HOME ='/home/jhy/spark/spark-3.2.4-bin-hadoop3.2'
 
 /home/jhy/spark/spark-3.2.4-bin-hadoop3.2/bin/spark-submit --master spark://BOOK-OCOA4D0UH1.:7077  \
 --name "${JOB_NAME}_${EXEC_DT}" \
