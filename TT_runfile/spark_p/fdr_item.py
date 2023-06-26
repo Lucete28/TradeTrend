@@ -81,12 +81,10 @@ for val in values:
 
     # 최종 DataFrame을 CSV로 저장
     final_df.select(final_df.columns).coalesce(1).write.mode('overwrite').option("header", "true").csv(f'file:///home/jhy/code/TradeTrend/data/spark_data/{val[0]}_temp')
-    # final_df.select(scaled_raw_df.columns).coalesce(1).write.option("header", "true").csv(f'file:///home/jhy/tmp/test_save_csv1/')
-    # final_df.coalesce(1).write.mode('overwrite').csv(f'file:///home/jhy/tmp/test_save_csv2/')
     
 
     # Raw 데이터 스케일링 (min-max scaling)
-    min_max_window = Window.partitionBy().orderBy("Target_Date")
+    min_max_window = Window.partitionBy()#.orderBy("Target_Date")
     scaled_raw_df = final_df.withColumn("min_val", min(final_df[f"Close_{val[0]}"]).over(min_max_window)) \
                             .withColumn("max_val", max(final_df[f"Close_{val[0]}"]).over(min_max_window)) \
                             .withColumn(f"scaled_Close_{val[0]}", (col(f"Close_{val[0]}") - col('min_val')) / (col('max_val') - col('min_val'))) \
@@ -95,6 +93,6 @@ for val in values:
 
     # Raw 데이터를 CSV로 저장
     scaled_raw_df.select(scaled_raw_df.columns).coalesce(1).write.mode('overwrite').option("header", "true").csv(f'file:///home/jhy/code/TradeTrend/data/spark_data/{val[0]}_raw')
-    # scaled_raw_df.select(scaled_raw_df.columns).coalesce(1).write.option("header", "true").csv(f'file:///home/jhy/tmp/test_save_csv2/')
+    
 
 spark.stop()
