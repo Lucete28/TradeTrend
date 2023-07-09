@@ -29,10 +29,10 @@ for val in values:
     # acc7_df = pd.read_csv('/home/jhy/code/TradeTrend/data/Accuracy_7.csv')
     # acc30_df = pd.read_csv('/home/jhy/code/TradeTrend/data/Accuracy_30.csv')
 
-    result_negative_count = len(result_df[result_df.iloc[:,-1] < 0])
-    result_positive_count = len(result_df[result_df.iloc[:,-1] > 0])
+    negative_count = len(result_df[result_df.iloc[:,-1] < 0])
+    positive_count = len(result_df[result_df.iloc[:,-1] > 0])
 
-    if result_positive_count>result_negative_count:     #'구매 or 존버'
+    if positive_count>negative_count:     #'구매 or 존버'
         if True: #구매
             resp = broker.create_market_buy_order(
             symbol= val[0],
@@ -40,7 +40,7 @@ for val in values:
             )
             receipt.append(resp)
             
-    elif result_negative_count > result_positive_count: #'판매 or 안구매'
+    elif negative_count > positive_count: #'판매 or 안구매'
         if True: #판매
             resp = broker.fetch_balance()
             hldg_qty = resp['output1'][0]['hldg_qty']
