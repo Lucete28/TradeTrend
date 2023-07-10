@@ -159,8 +159,8 @@ for val in values:
             'rise_pred_count' : rise_pred_count_7,
             'real_fall' : real_fall_count_7,
             'fall_pred_count' : fall_pred_count_7,
-            'Rise_pred Accuracy': (rise_real_count_7 / rise_pred_count_7) * 100 if rise_pred_count_7 != 0 else 'N/A (pred_count가 0입니다)',
-            'Fall_pred Accuracy': (fall_real_count_7 / fall_pred_count_7) * 100 if fall_pred_count_7 != 0 else 'N/A (pred_count가 0입니다)',
+            'Rise_pred Accuracy': (rise_real_count_7 / rise_pred_count_7) * 100 if rise_pred_count_7 != 0 else 0,
+            'Fall_pred Accuracy': (fall_real_count_7 / fall_pred_count_7) * 100 if fall_pred_count_7 != 0 else 0,
         }
         Accuracy_7.append(result_dict_7)
         df_acc_7 = pd.DataFrame(Accuracy_7)
@@ -172,8 +172,8 @@ for val in values:
             'rise_pred_count' : rise_pred_count_30,
             'real_fall' : real_fall_count_30,
             'fall_pred_count' : fall_pred_count_30,
-            'Rise_pred Accuracy': (rise_real_count_30 / rise_pred_count_30) * 100 if rise_pred_count_30 != 0 else 'N/A (pred_count가 0입니다)',
-            'Fall_pred Accuracy': (fall_real_count_30 / fall_pred_count_30) * 100 if fall_pred_count_30 != 0 else 'N/A (pred_count가 0입니다)',
+            'Rise_pred Accuracy': (rise_real_count_30 / rise_pred_count_30) * 100 if rise_pred_count_30 != 0 else 0,
+            'Fall_pred Accuracy': (fall_real_count_30 / fall_pred_count_30) * 100 if fall_pred_count_30 != 0 else 0,
         }
         Accuracy_30.append(result_dict_30)
         df_acc_30 = pd.DataFrame(Accuracy_30)

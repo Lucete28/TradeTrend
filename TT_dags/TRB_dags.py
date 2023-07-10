@@ -49,9 +49,9 @@ update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/code/
 fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/fdr_item_data.py')
 ml = gen_bash(task_id='ml', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/ml.py')
 git_record = gen_bash(task_id='git_record', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/git_record.py')
-# trading = gen_bash(task_id='trading', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/trading.py')
+trading = gen_bash(task_id='trading', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/trading.py')
 
-naver_temp >> update_raw >> fdr_data >> ml >> git_record
+naver_temp >> update_raw >> fdr_data >> ml >> git_record >> trading
 
 
 
