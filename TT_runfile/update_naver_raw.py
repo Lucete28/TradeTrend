@@ -10,8 +10,8 @@ for val in values:
     
     gpt_ans = []
 
-    temp_df = pd.read_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}_temp4.csv')
-    raw_df = pd.read_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}_news_raw2.csv')
+    temp_df = pd.read_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_temp4.csv')
+    raw_df = pd.read_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_news_raw2.csv')
 
     ans_list = raw_df.iloc[:, 1]
     for i, ans in enumerate(ans_list):
@@ -32,4 +32,4 @@ for val in values:
 
             # 기존 값을 새로운 값으로 교체
             raw_df.iloc[i,1] = chat_response
-            raw_df.to_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}_news_raw2.csv', index=False)
+            raw_df.to_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_news_raw2.csv', index=False)

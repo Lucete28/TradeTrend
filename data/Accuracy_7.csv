@@ -1,8 +1,0 @@
-Model Name,real_rise,rise_pred_count,real_fall,fall_pred_count,Rise_pred Accuracy,Fall_pred Accuracy
-LinearRegression,3,0,5,8,N/A (pred_count가 0입니다),62.5
-LGBMRegressor,3,3,5,5,66.66666666666666,80.0
-RandomForestRegressor,3,2,5,6,50.0,66.66666666666666
-KNeighborsRegressor,3,2,5,6,100.0,83.33333333333334
-DecisionTreeRegressor,3,5,5,3,40.0,66.66666666666666
-GradientBoostingRegressor,3,1,5,7,100.0,71.42857142857143
-XGBRegressor,3,3,5,5,66.66666666666666,80.0

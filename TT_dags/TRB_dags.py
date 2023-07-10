@@ -8,7 +8,7 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
-    'start_date': datetime(year=2023, month=6, day=10, hour=0, minute=0, tzinfo=local_tz),
+    'start_date': datetime(year=2023, month=7, day=8, hour=0, minute=0, tzinfo=local_tz),
     'retries': 0,
     'retry_delay': timedelta(seconds=5)
 }
@@ -48,9 +48,10 @@ update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/code/
 
 fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/fdr_item_data.py')
 ml = gen_bash(task_id='ml', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/ml.py')
+git_record = gen_bash(task_id='git_record', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/git_record.py')
 # trading = gen_bash(task_id='trading', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/trading.py')
 
-naver_temp >> update_raw >> fdr_data >> ml 
+naver_temp >> update_raw >> fdr_data >> ml >> git_record
 
 
 
