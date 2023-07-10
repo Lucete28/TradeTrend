@@ -50,7 +50,9 @@ for val in values:
         )
         receipt.append(resp)
         
-    receipt.to_txt(f"/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_receipt.txt")
+    with open(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_output.txt', 'w') as f:
+        for item in receipt:
+            f.write(f'{item}\n')
     
     
     # negative_count = len(result_df[result_df.iloc[:,-1] < 0])
