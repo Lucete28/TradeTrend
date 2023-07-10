@@ -9,7 +9,7 @@ default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
     'start_date': datetime(year=2023, month=7, day=8, hour=0, minute=0, tzinfo=local_tz),
-    'retries': 0,
+    'retries': 10,
     'retry_delay': timedelta(seconds=5)
 }
 test_dag = DAG(
