@@ -1,1 +1,0 @@
-/mnt/c/PlayData/finance/news_temp.py
