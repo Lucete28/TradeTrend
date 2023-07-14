@@ -8,7 +8,7 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
-    'start_date': datetime(year=2023, month=6, day=10, hour=0, minute=0, tzinfo=local_tz),
+    'start_date': datetime(year=2023, month=7, day=8, hour=0, minute=0, tzinfo=local_tz),
     'retries': 10,
     'retry_delay': timedelta(seconds=5)
 }
@@ -29,14 +29,33 @@ def gen_bash(task_id, bash_command, trigger_rule='all_success'):
         dag=test_dag
     )
 
+P_CODE = '/home/jhy/code/TradeTrend/TT_runfile/spark_p'
+SH_PYSPARK = f'sh {P_CODE}/pyspark_submit.sh'
+# P_PY_CODE = f'{P_CODE}/src/pyspark/tom'
+EXE_SEOUL = "{{execution_date.add(hours=9).strftime('%Y%m%d')}}"
+# DATA_SAMPLE_FRACTION = Variable.get('DATA_SAMPLE_FRACTION', default_var='')
 
+
+def gen_spark(name: str):
+    cmd = f"{SH_PYSPARK} {P_CODE}/{name}.py jhy_{name} {EXE_SEOUL}"
+    return gen_bash(f"spark.{name}", cmd)
+
+#기사 스크랩
 naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/news_temp.py {{execution_date.strftime("%Y-%m-%d")}}')
+# 수치화
 update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/update_naver_raw.py')
+
+# fdr_spark = gen_spark(name='fdr_item')
+# 데이터 통합
 fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/fdr_item_data.py')
+# 학습
 ml = gen_bash(task_id='ml', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/ml.py')
+# 학습결과 저장
+git_record = gen_bash(task_id='git_record', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/git_record.py')
+# 거래
+trading = gen_bash(task_id='trading', bash_command='python /home/jhy/code/TradeTrend/TT_runfile/trading.py')
 
-
-naver_temp >> update_raw >> fdr_data >> ml
+naver_temp >> update_raw >> fdr_data >> ml >> git_record >> trading
 
 
 
