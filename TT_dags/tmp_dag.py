@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-
 import pendulum
 from datetime import datetime, timedelta
 
@@ -31,7 +30,7 @@ def gen_bash(task_id, bash_command, trigger_rule='all_success'):
     )
 
 
-naver_temp = gen_bash(task_id='naver_temp', bash_command='python /home/jhy/code/TradeTrend/TT_dags/tmp.py ')
+naver_temp = gen_bash(task_id='naver_temp', bash_command='python /mnt/c/PlayData/finance/tmp.py {{execution_date.strftime("%Y-%m-%d")}}')
 
 
 naver_temp 

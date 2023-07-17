@@ -1,5 +1,4 @@
 # 전날 뉴스 기사를 받아옴
-from airflow.models.variable import Variable
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -8,10 +7,14 @@ import pandas as pd
 import FinanceDataReader as fdr
 import sys
 
-a = Variable.get("Target_list")
-values = [tuple(item.strip("()").split(",")) for item in a.split("),")]
-values = [(x[0].strip(), x[1].strip()) for x in values]
-print(values)
-print(values[0][0])
-fdr_df = fdr.DataReader(values[0][0], '2020')
-print(fdr_df.head(1))
+# 날짜 설정
+execution_date = sys.argv[1]
+yesterday_stamp= pd.Timestamp(execution_date) + pd.Timedelta(days=-1)
+str_date = str(yesterday_stamp)
+yesterday = str_date[:10]
+yesterday_year = str_date[:4]
+yesterday_month = str_date[5:7]
+yesterday_day = str_date[8:10]
+
+print(yesterday_day)
+print('###############################')
