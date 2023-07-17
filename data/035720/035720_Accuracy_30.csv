@@ -1,8 +1,8 @@
 Model Name,real_rise,rise_pred_count,real_fall,fall_pred_count,Rise_pred Accuracy,Fall_pred Accuracy
-LinearRegression,9,10,19,20,40.0,70.0
-LGBMRegressor,9,21,19,9,33.33333333333333,77.77777777777779
-RandomForestRegressor,9,15,19,15,26.666666666666668,66.66666666666666
-KNeighborsRegressor,9,10,19,20,40.0,65.0
-DecisionTreeRegressor,9,10,19,18,30.0,61.111111111111114
-GradientBoostingRegressor,9,11,19,19,27.27272727272727,63.1578947368421
-XGBRegressor,9,13,19,17,30.76923076923077,70.58823529411765
+LinearRegression,10,10,18,20,40.0,65.0
+LGBMRegressor,10,20,18,10,30.0,60.0
+RandomForestRegressor,10,16,18,14,31.25,64.28571428571429
+KNeighborsRegressor,10,9,18,21,44.44444444444444,61.904761904761905
+DecisionTreeRegressor,10,12,18,16,25.0,62.5
+GradientBoostingRegressor,10,13,18,17,38.46153846153847,64.70588235294117
+XGBRegressor,10,14,18,16,35.714285714285715,68.75
