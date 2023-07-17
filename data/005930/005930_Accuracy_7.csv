@@ -1,0 +1,8 @@
+Model Name,real_rise,rise_pred_count,real_fall,fall_pred_count,Rise_pred Accuracy,Fall_pred Accuracy
+LinearRegression,2,0,5,8,0.0,62.5
+LGBMRegressor,2,6,5,2,33.33333333333333,100.0
+RandomForestRegressor,2,6,5,2,33.33333333333333,100.0
+KNeighborsRegressor,2,5,5,3,40.0,100.0
+DecisionTreeRegressor,2,4,5,4,50.0,100.0
+GradientBoostingRegressor,2,3,5,5,66.66666666666666,100.0
+XGBRegressor,2,5,5,3,40.0,100.0
