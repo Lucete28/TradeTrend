@@ -6,6 +6,7 @@ import datetime
 import pandas as pd
 import FinanceDataReader as fdr
 import sys
+import os
 
 Target_list = Variable.get("Target_list")
 values = [tuple(item.strip("()").split(",")) for item in Target_list.split("),")]
@@ -27,6 +28,7 @@ for val in values:
     try:
         old_df = pd.read_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_temp4.csv')
     except:
+        os.makedirs(f'/opt/airflow/src/{val[0]}')
         columns = ['0','1']
         old_df= pd.DataFrame(columns=columns)
 
