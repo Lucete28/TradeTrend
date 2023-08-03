@@ -25,8 +25,8 @@ asst_icdc_amt = resp['output2'][0]['asst_icdc_amt'] #장내 현금 보유액
 
 
 for val in values: 
-    result_df = pd.read_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_result.csv')
-    acc7_df = pd.read_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_Accuracy_7.csv')
+    result_df = pd.read_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_result.csv')
+    acc7_df = pd.read_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_Accuracy_7.csv')
     # acc30_df = pd.read_csv('/home/jhy/code/TradeTrend/data/Accuracy_30.csv')
     acc7_pos_pred = acc7_df[acc7_df['Rise_pred Accuracy'] >= 50].index.tolist()
     acc7_neg_pred = acc7_df[acc7_df['Fall_pred Accuracy'] >= 50].index.tolist()
@@ -50,7 +50,7 @@ for val in values:
         )
         receipt.append(resp)
         
-    with open(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_output.txt', 'w') as f:
+    with open(f'/opt/airflow/src/{val[0]}/{val[0]}_output.txt', 'w') as f:
         for item in receipt:
             f.write(f'{item}\n')
     

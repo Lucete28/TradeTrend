@@ -3,8 +3,8 @@ import pandas as pd
 from airflow.models.variable import Variable
 
 git_token = Variable.get("git_token")
-df7 = pd.read_csv("/home/jhy/airflow/src/005930/005930_Accuracy_7.csv")
-df30 = pd.read_csv("/home/jhy/airflow/src/005930/005930_Accuracy_30.csv")
+df7 = pd.read_csv("/opt/airflow/src/005930/005930_Accuracy_7.csv")
+df30 = pd.read_csv("/opt/airflow/src/005930/005930_Accuracy_30.csv")
 table7 = df7.to_markdown(index=False)
 table30 = df30.to_markdown(index=False)
 

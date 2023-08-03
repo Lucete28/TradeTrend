@@ -43,7 +43,7 @@ for val in values:
         else:
             return 1
     
-    df = pd.read_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_temp.csv')
+    df = pd.read_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_temp.csv')
     df = df.drop(['Date','Volume_USD/KRW'],axis=1)
     df = df.iloc[:-1]
     scaled_df = df
@@ -164,7 +164,7 @@ for val in values:
         }
         Accuracy_7.append(result_dict_7)
         df_acc_7 = pd.DataFrame(Accuracy_7)
-        df_acc_7.to_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_Accuracy_7.csv',index=False)
+        df_acc_7.to_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_Accuracy_7.csv',index=False)
         
         result_dict_30 = {
             'Model Name': type(model.estimator).__name__,
@@ -177,6 +177,6 @@ for val in values:
         }
         Accuracy_30.append(result_dict_30)
         df_acc_30 = pd.DataFrame(Accuracy_30)
-        df_acc_30.to_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_Accuracy_30.csv',index=False)
+        df_acc_30.to_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_Accuracy_30.csv',index=False)
 
-    pd.DataFrame(result_list,index=model_names,columns=target).to_csv(f'/home/jhy/airflow/src/{val[0]}/{val[0]}_result.csv')
+    pd.DataFrame(result_list,index=model_names,columns=target).to_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_result.csv')

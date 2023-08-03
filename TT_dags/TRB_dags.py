@@ -9,7 +9,7 @@ default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
     'start_date': datetime(year=2023, month=8, day=1, hour=0, minute=0, tzinfo=local_tz),
-    'retries': 5,
+    'retries': 4,
     'retry_delay': timedelta(seconds=5)
 }
 test_dag = DAG(
@@ -43,17 +43,17 @@ def gen_spark(name: str):
 #기사 스크랩
 naver_temp = gen_bash(task_id='crawling', bash_command='python /opt/airflow/lib/crawling.py {{execution_date.strftime("%Y-%m-%d")}}')
 # 수치화
-update_raw = gen_bash(task_id='update_raw', bash_command='python /home/jhy/air/lib/update_naver_raw.py')
+update_raw = gen_bash(task_id='update_raw', bash_command='python /opt/airflow/lib/update_naver_raw.py')
 
 # fdr_spark = gen_spark(name='fdr_item')
 # 데이터 통합
-fdr_data = gen_bash(task_id='fdr_data', bash_command='python /home/jhy/air/lib/fdr_item_data.py')
+fdr_data = gen_bash(task_id='fdr_data', bash_command='python /opt/airflow/lib/fdr_item_data.py')
 # 학습
-ml = gen_bash(task_id='ml', bash_command='python /home/jhy/air/lib/ml.py')
+ml = gen_bash(task_id='ml', bash_command='python /opt/airflow/lib/ml.py')
 # 학습결과 저장
-git_record = gen_bash(task_id='git_record', bash_command='python /home/jhy/air/lib/git_record.py')
+git_record = gen_bash(task_id='git_record', bash_command='python /opt/airflow/lib/git_record.py')
 # 거래
-trading = gen_bash(task_id='trading', bash_command='python /home/jhy/air/lib/trading.py')
+trading = gen_bash(task_id='trading', bash_command='python /opt/airflow/lib/trading.py')
 
 naver_temp >> update_raw >> fdr_data >> ml >> git_record >> trading
 
