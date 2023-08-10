@@ -34,15 +34,15 @@ common_df = merge_and_clean(df1,'_USD/KRW',df2,'_ks11')
 
 
 for val in values:
-    news_df = pd.read_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_news_raw2.csv', index_col=0)  # 첫 번째 열을 인덱스로 설정
+    news_df = pd.read_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_news_raw2.csv', index_col=0)  # 첫 번째 열을 인덱스로 설정
     news_df.index = pd.to_datetime(news_df.index)
     
     df = fdr.DataReader(val[0], '2020')
     target_df = merge_and_clean(df,val[0],news_df,'news') # 종목 뉴스와 종목 fdr 데이터 머지
     final_df = merge_and_clean(target_df,val[0],common_df,'_common')
-    final_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_temp.csv',index = False)    
+    final_df.reset_index().to_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_temp.csv',index = False)    
     sc_df = min_max_scaling(final_df)
-    sc_df.reset_index().to_csv(f'/home/jhy/code/TradeTrend/data/{val[0]}/{val[0]}_raw.csv',index = False)
+    sc_df.reset_index().to_csv(f'/opt/airflow/src/{val[0]}/{val[0]}_raw.csv',index = False)
 
 
 
